@@ -70,7 +70,18 @@ async function run() {
       return res.send(result);
     })
 
-    
+    app.post(`/reactions`, async(req, res) => {
+      const reaction = req.body;
+      const result = await reactionsCollection.insertOne(reaction);
+      return res.send(result);
+    })
+
+    app.get(`/reactions`, async(req, res) => {
+      const query = {};
+      const result = await reactionsCollection.find(query).toArray();
+      return res.send(result);
+    })
+
 
   } finally {
   }
