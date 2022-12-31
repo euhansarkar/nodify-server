@@ -64,8 +64,9 @@ async function run() {
       return res.send(result);
     })
 
-    app.get(`/comments`, async(req, res) => {
-      const query = {};
+    app.get(`/comments/:postId`, async(req, res) => {
+      const postId = req.params.postId;
+      const query = {postId: postId};
       const result = await commentsCollection.find(query).toArray();
       return res.send(result);
     })
